@@ -20,7 +20,7 @@ class CalcInterface(QWidget):
         self.calculator = calculator if calculator is not None else Calculator()
         self.soundspath = ['/fart.wav','/cow.wav','/duck.wav','/boat.wav']
         self.sound = self.soundspath[0]
-        self.sound_prob = 0.3
+        self.sound_prob = 1.
 
         self.stacked_widget = QStackedWidget(self)
         self.display = self.create_display()
@@ -98,13 +98,36 @@ class CalcInterface(QWidget):
     def create_options(self, parent_widget):
         optionBtn = QToolButton(parent_widget)
         optionBtn.setText('Options')
-        menu = QMenu(optionBtn)
-        menu.addAction('bateau / boat')
-        menu.addAction('canard / duck')
-        menu.addAction('pet / fart')
-        menu.addAction('vache / cow')
+        optionBtn.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
+        menu = QMenu(self)
+        menu.setMinimumWidth(180)
+        menu.setStyleSheet("""
+            QMenu {
+                background-color: #f0ffff;
+                color: #000000;
+                border: 1px solid #87ceeb;
+            }
+            QMenu::item {
+                padding: 8px 14px;
+            }
+            QMenu::item:selected {
+                background-color: #87ceeb;
+            }
+        """)
+        sound_options = {
+            'bateau / boat': '/boat.wav',
+            'canard / duck': '/duck.wav',
+            'pet / fart': '/fart.wav',
+            'vache / cow': '/cow.wav',
+        }
+        for label, sound in sound_options.items():
+            action = menu.addAction(label)
+            action.triggered.connect(
+                lambda checked=False, selected_sound=sound: self.change_sound(selected_sound)
+            )
         optionBtn.setMenu(menu)
         optionBtn.setPopupMode(QToolButton.InstantPopup)
+        optionBtn.clicked.connect(optionBtn.showMenu)
         self.options_style(optionBtn)
 
         return optionBtn
@@ -267,10 +290,10 @@ class CalcInterface(QWidget):
 
     def play_sound(self, sound_prob):  
         if np.random.rand() < sound_prob:  # 10% chance to play the sound
-            path= os.getcwd()
-            effect = pygame.mixer.Sound(path + self.sound)
+            path = os.getcwd() + "/Sounds"
+            effect = pygame.mixer.Sound(path + "/" + self.sound)
             effect.play()
-            pygame.time.wait(1000)
+            pygame.time.wait(500)
 
-    def change_sound(self):
-        pass 
+    def change_sound(self, sound):
+        self.sound = sound
