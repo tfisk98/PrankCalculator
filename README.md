@@ -29,5 +29,10 @@ _ cow
 _ duck
 _ fart.
 
-  
+## Images 
+
+![Numerical Page](./Images/NumericalPage.png)  
+![Scientific Page](./Images/ScientificPage.png)
+![Sound Options](./Images/OptionMenu.png)
+
      
