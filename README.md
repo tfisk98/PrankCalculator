@@ -6,10 +6,10 @@ This project presents a basic desktop application used to make simple algebric o
 
 ## Versions and Librariries used
 
-Python 3.13
-Pyside 6.11.2
-Numpy 2.5.3
-Pygame 2.6.1
+- Python 3.13
+- Pyside 6.11.2
+- Numpy 2.5.3
+- Pygame 2.6.1
 
 ## Operations
 
@@ -17,22 +17,33 @@ The calculator takes input expressions of the form 'a operator b'.
 Default left side values are implemented, depending on the operators (0 for +,-. 1 for cos,exp,ln,sqrt,...).
 A missing right side value will result in an error.
 Order priority in operations are implemented (must be checked).
+
+## Other Buttons 
+
 'del' button deletes the right-most element.
 'C' clears the input.
 'CI' changes the buttons interface, from numerical to scientific mode.
 
 ## Noises
 
-The option button allows the user to change which noise you want to embarass the user with when he or she presses the buttons. For now only 4 are available : 
-_ boat
-_ cow
-_ duck
-_ fart.
+The option button allows the user to change which noise you want to embarass the user with when he or she presses the buttons. For now only 4 are available :
+ 
+- boat
+- cow
+- duck
+- fart.
 
 ## Images 
 
-![Numerical Page](./Images/NumericalPage.png)  
-![Scientific Page](./Images/ScientificPage.png)
-![Sound Options](./Images/OptionMenu.png)
+<img src="./Images/NumericalPage.png" alt="Numerical page" width="200"/>
 
+Numerical Page.
+
+<img src="./Images/ScientificPage.png" alt="Scientific page" width="200"/>
+
+Scientific Page.
+
+<img src="./Images/ScientificPage.png" alt="Option Menu" width="200"/>
+
+Sound Options.
      
